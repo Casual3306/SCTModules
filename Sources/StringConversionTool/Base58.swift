@@ -1,9 +1,5 @@
-//
-//  File.swift
-//  
-//
-//  Created by Gleb Bair on 6/25/22.
-//
+// Copyright Keefer Taylor, 2019.
+// Source: https://github.com/keefertaylor/Base58Swift/blob/master/Base58Swift/Base58.swift
 
 import Foundation
 import BigInt
