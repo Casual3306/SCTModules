@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/attaswift/BigInt",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e022b9b090fff50dfdd609403381c3eaa794ba50"
+      }
+    },
+    {
+      "identity" : "cryptoswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/CryptoSwift",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a5a117ad04b2d79b6e29b87ef60aba9a3b7a73a2"
+      }
+    }
+  ],
+  "version" : 2
+}
