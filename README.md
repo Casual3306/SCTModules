@@ -7,7 +7,7 @@ This library contains an assortment of string manipulation methods. Manipulation
 
 #### Encoding
 ```swift
-import Encoder
+import StringConversionTool
 
 class TestClass {
     
@@ -21,7 +21,7 @@ class TestClass {
 
 ##### Decoding
 ``` swift
-import Decoder
+import StringConversionTool
 
 class TestClass {
 
