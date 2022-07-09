@@ -10,12 +10,17 @@ import Foundation
 public class Encoder {
     // Data variables
     private var text = ""
+    private var integer = 0
     
     // Constructors
     public init() {}
     
     public init(text: String?) {
         self.text = text ?? "NIL"
+    }
+    
+    public init(integer: Int?) {
+        self.integer = integer ?? 0
     }
     
     ///
@@ -26,7 +31,7 @@ public class Encoder {
     public func setText(text: String?) {
         self.text = text ?? "NIL"
     }
-    
+    // MARK: String Encoding
     ///
     /// Encodes a string of text using the Hexadecimal method. This method will return the encoded hexadecimal string
     ///
@@ -80,6 +85,45 @@ public class Encoder {
         let data = self.text.toBase64()
                 
         return String(data)
+    }
+    // MARK: Integer Encoding
+    ///
+    /// Encode a number into binary.
+    ///
+    /// - returns: The number in binary form
+    ///
+    public func intToBinary() -> String {
+        if integer >= 99999 {
+            return String(Int64(integer).binaryDescription)
+        } else if integer < 99999 {
+            return String(Int16(integer).binaryDescription)
+        }
+        
+        return "INVALID INTEGER CONVERSION"
+    }
+    ///
+    /// Encode a number into hexadecimal
+    ///
+    /// - returns: The number in hexadecimal form
+    ///
+    public func intToHexadecimal() -> String {
+        return String(integer, radix: 16)
+    }
+    ///
+    /// Encode a number into base64
+    ///
+    /// - returns: The number in base64 form
+    ///
+    public func intToBase64() -> String {
+        return String(integer).toBase64()
+    }
+    ///
+    /// Encode a number into base58
+    ///
+    /// - returns: The number in base58 form
+    ///
+    public func intToBase58() -> String {
+        return Encoder.init(text: String(Int(integer))).toBase58()
     }
     
     // MARK: Meta sub-methods

@@ -10,12 +10,17 @@ import Foundation
 public class Decoder {
     
     private var encodedText = ""
+    private var encodedNumber = ""
     
     // Constructors
     public init() {}
     
     public init(encodedText: String?) {
         self.encodedText = encodedText ?? "001010101"
+    }
+    
+    public init(encodedNumber: String) {
+        self.encodedNumber = encodedNumber
     }
     
     ///
@@ -26,7 +31,7 @@ public class Decoder {
     public func setEncodedText(encodedText: String?) {
         self.encodedText = encodedText ?? "100101001"
     }
-    
+    // MARK: String Decoding
     ///
     /// Decodes a hexadecimal string and returns the original encoded string
     ///
@@ -78,5 +83,47 @@ public class Decoder {
     ///
     public func fromBase64() -> String {
         return encodedText.base64Decoded() ?? "QmFkIGJhc2U2NCBlbmNvZGluZy4uLg==".base64Decoded()!
+    }
+    // MARK: Integer Decoding
+    ///
+    /// Turns a binary integer into a string again
+    ///
+    /// - returns: The decoded binary integer
+    ///
+    public func binaryToInteger() -> String {
+        if let result = Int(encodedNumber, radix: 2) {
+            return String(result)
+        }
+        
+        return "INVALID DECODING"
+    }
+    ///
+    /// Turns a hexadecimal integer into a string again
+    ///
+    /// - returns: The decoded hexadecinal integer
+    ///
+    public func hexToInteger() -> String {
+        let result = Int(encodedNumber, radix: 16)
+        
+        return String(result ?? 16)
+    }
+    ///
+    /// Turns a base64 integer into a string again
+    ///
+    ///  - returns: The decoded base64 integer
+    ///
+    public func b64ToInteger() -> String {
+        let dc = Data(base64Encoded: encodedNumber) ?? Data(base64Encoded: "SW52YWxpZCBCYXNlNjQgbnVtYmVyLi4u")!
+        let ds = String(data: dc, encoding: .utf8)!
+        
+        return ds
+    }
+    ///
+    /// Turns a base58 integer into a number string again
+    ///
+    /// - returns: The decoded base58 integer string sequence
+    ///
+    public func b58ToInteger() -> String {
+        return Decoder.init(encodedNumber: self.encodedNumber).fromBase58()
     }
 }
